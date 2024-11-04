@@ -1,1 +1,71 @@
-<p>login works!</p>
+<div class="login">
+    <div class="fields" *ngIf="isLogin">
+          <form [formGroup]="loginFrm"> 
+            <div class="logo">
+                <h3>Login</h3>
+            </div>
+            <div class="input">
+               <label for="email">Email</label>
+              <input type="email" placeholder="Enter Email" formControlName="email">
+              <div class="errors" *ngIf="loginFrm.get('email')?.hasError('email') && loginFrm.get('email')?.touched">
+                Please Enter a Valid Email Address.
+              </div>
+              <div class="errors" *ngIf="loginFrm.get('email')?.hasError('required') && loginFrm.get('email')?.touched">
+               Please Enter Your Email Address
+              </div>
+            </div>
+            <div class="input">
+               <label for="password">Password</label>
+               <input type="password" placeholder="Enter Password" formControlName="password">
+               <div class="errors" *ngIf="loginFrm.get('password')?.hasError('required') && loginFrm.get('password')?.touched">
+                 Please Enter Your Password
+               </div>
+            </div>
+            <div class="btn">
+                <button (click)="onLogin()">Login</button>
+            </div>
+            <div class="text">
+                <p>or signup using</p>
+                <a (click)="isLogin = false">Signup</a>
+            </div>
+          </form>
+    </div>
+    <div class="fields" *ngIf="isLogin == false">
+        <form [formGroup]="loginFrm"> 
+          <div class="logo">
+              <h3>Register</h3>
+          </div>
+          <div class="input">
+            <label for="userName">UserName</label>
+            <input type="text" formControlName="userName" placeholder="Enter Name">
+            <div class="errors" *ngIf="loginFrm.get('userName')?.hasError('required') && loginFrm.get('userName')?.touched">
+               Please Enter Your Name
+            </div>
+          </div>
+          <div class="input">
+             <label for="email">Email</label>
+            <input type="email" placeholder="Enter Email" formControlName="email">
+            <div class="errors" *ngIf="loginFrm.get('email')?.hasError('email') && loginFrm.get('email')?.touched">
+              Please Enter a Valid Email Address.
+            </div>
+            <div class="errors" *ngIf="loginFrm.get('email')?.hasError('required') && loginFrm.get('email')?.touched">
+             Please Enter Your Email Address
+            </div>
+          </div>
+          <div class="input">
+             <label for="password">Password</label>
+             <input type="password" placeholder="Enter Password" formControlName="password">
+             <div class="errors" *ngIf="loginFrm.get('password')?.hasError('required') && loginFrm.get('password')?.touched">
+               Please Enter Your Password
+             </div>
+          </div>
+          <div class="btn">
+              <button (click)="onSubmit()">Register</button>
+          </div>
+          <div class="text">
+              <p>or login using</p>
+              <a (click)="isLogin = true">Login</a>
+          </div>
+        </form>
+  </div>
+</div>
